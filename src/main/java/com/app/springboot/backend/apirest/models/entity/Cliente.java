@@ -13,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -37,6 +38,11 @@ public class Cliente implements Serializable {
 	//@DateTimeFormat(pattern = "yyyy-mm-dd")
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
+	
+	@PrePersist
+	public void prePersist() {
+		createAt = new Date();
+	}
 
 	private static final long serialVersionUID = 1L;
 
